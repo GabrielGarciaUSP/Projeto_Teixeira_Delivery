@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermercado Teixeira</title>
+    <style>
+        /* --- CSS Reset & Variáveis --- */
+        :root {
+            --primary-color: #2ecc71; /* Verde Mercado */
+            --secondary-color: #27ae60;
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-light: #f4f4f4;
+            --padding-padrao: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body { color: var(--text-dark); line-height: 1.6; }
+
+        /* --- Header --- */
+        header {
+            background: #fff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
+        .btn-whatsapp {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-whatsapp:hover { background-color: var(--secondary-color); }
+
+        /* --- Hero Section (Destaque) --- */
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/Fachada.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 20px; }
+
+        /* --- Ofertas (Grid) --- */
+        .secao { padding: 50px 5%; }
+        .titulo-secao { text-align: center; margin-bottom: 30px; font-size: 2rem; }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .produto-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .produto-card:hover { transform: translateY(-5px); }
+
+        .produto-img { width: 100%; height: 200px; background-color: #ddd; object-fit: cover; }
+        
+        .produto-info { padding: 15px; text-align: center; }
+        .produto-preco { color: var(--secondary-color); font-weight: bold; font-size: 1.2rem; display: block; margin-top: 10px; }
+
+        /* --- Footer --- */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* --- Responsividade --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🛒 Supermercado Teixeira</div>
+        <a href="#" class="btn-whatsapp">Pedir no Zap</a>
+    </header>
+
+    <section class="hero">
+        <h1>O melhor do bairro na sua mesa</h1>
+        <p>Faça suas compras sem sair de casa. Entregamos em até 1 hora.</p>
+        <a href="#ofertas" class="btn-whatsapp" style="margin-top: 10px;">Ver Ofertas</a>
+    </section>
+
+    <section id="ofertas" class="secao">
+        <h2 class="titulo-secao">Ofertas da Semana</h2>
+        
+        <div class="produtos-grid">
+            <div class="produto-card">
+                <img src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=500" class="produto-img" alt="Vegetais">
+                <div class="produto-info">
+                    <h3>Kit Legumes Frescos</h3>
+                    <p>Seleção do dia</p>
+                    <span class="produto-preco">R$ 15,90</span>
+                </div>
+            </div>
+
+            <div class="produto-card">
+                <img src="https://images.unsplash.com/photo-1586190848861-99c9f46e8b6b?w=500" class="produto-img" alt="Carnes">
+                <div class="produto-info">
+                    <h3>Alcatra (kg)</h3>
+                    <p>Corte especial para churrasco</p>
+                    <span class="produto-preco">R$ 39,90</span>
+                </div>
+            </div>
+
+            <div class="produto-card">
+                <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=500" class="produto-img" alt="Bebidas">
+                <div class="produto-info">
+                    <h3>Coca-Cola 2L</h3>
+                    <p>Gelada para o almoço</p>
+                    <span class="produto-preco">R$ 8,50</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h3>Supermercado Teixeira</h3>
+        <p>Rua Bauru, 239 - Nossa Senhora Aparecida</p>
+        <p>Aberto todos os dias das 06:00 às 20:00</p>
+        <br>
+        <small>Desenvolvido por Gabriel Garcia</small>
+    </footer>
+
+</body>
+</html>
