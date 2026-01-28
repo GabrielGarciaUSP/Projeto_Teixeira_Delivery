@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supermercado Teixeira</title>
     <style>
-        /* --- CSS Reset & Variáveis --- */
         :root {
-            --primary-color: #2ecc71; /* Verde Mercado */
+            --primary-color: #2ecc71;
             --secondary-color: #27ae60;
             --text-dark: #333;
             --text-light: #fff;
@@ -19,7 +18,6 @@
 
         body { color: var(--text-dark); line-height: 1.6; }
 
-        /* --- Header --- */
         header {
             background: #fff;
             padding: 1rem 5%;
@@ -44,7 +42,6 @@
         }
         .btn-whatsapp:hover { background-color: var(--secondary-color); }
 
-        /* --- Hero Section (Destaque) --- */
         .hero {
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/Fachada.jpg');
             background-size: cover;
@@ -117,33 +114,8 @@
     <section id="ofertas" class="secao">
         <h2 class="titulo-secao">Ofertas da Semana</h2>
         
-        <div class="produtos-grid">
-            <div class="produto-card">
-                <img src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=500" class="produto-img" alt="Vegetais">
-                <div class="produto-info">
-                    <h3>Kit Legumes Frescos</h3>
-                    <p>Seleção do dia</p>
-                    <span class="produto-preco">R$ 15,90</span>
-                </div>
-            </div>
+        <div class="produtos-grid" id="container-produtos">
 
-            <div class="produto-card">
-                <img src="https://images.unsplash.com/photo-1586190848861-99c9f46e8b6b?w=500" class="produto-img" alt="Carnes">
-                <div class="produto-info">
-                    <h3>Alcatra (kg)</h3>
-                    <p>Corte especial para churrasco</p>
-                    <span class="produto-preco">R$ 39,90</span>
-                </div>
-            </div>
-
-            <div class="produto-card">
-                <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=500" class="produto-img" alt="Bebidas">
-                <div class="produto-info">
-                    <h3>Coca-Cola 2L</h3>
-                    <p>Gelada para o almoço</p>
-                    <span class="produto-preco">R$ 8,50</span>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -154,6 +126,61 @@
         <br>
         <small>Desenvolvido por Gabriel Garcia</small>
     </footer>
+
+    <script>
+    const listaProdutos = [
+        {
+            nome: "Nescau Cereal",
+            descricao: "Nescau Cereal Sabor Chocolate 180g",
+            preco: "R$ 12,90",
+            imagem: "img/Nescau.png"
+        },
+        {
+            nome: "Kit Legumes Frescos",
+            descricao: "Seleção do dia",
+            preco: "R$ 15,90",
+            imagem: "img/Legumes.jpg"
+        },
+        {
+            nome: "Alcatra (kg)",
+            descricao: "Corte especial para churrasco",
+            preco: "R$ 39,90",
+            imagem: "img/Alcatra.webp"
+        },
+        {
+            nome: "Coca-Cola 2L",
+            descricao: "Gelada para o almoço",
+            preco: "R$ 8,50",
+            imagem: "img/CocaCola.webp"
+        }
+    ];
+
+    // Pegar o container para guardar os produtos
+    const container = document.getElementById('container-produtos');
+
+    // Criar uma variável para guardar o HTML gerado
+    let htmlGerado = "";
+
+    // Percorrer a lista de produtos
+    listaProdutos.forEach(produto => {
+         
+        // Injeção dos dados
+        htmlGerado += `
+            <div class="produto-card">
+                <img src="${produto.imagem}" class="produto-img" alt="${produto.nome}">
+                <div class="produto-info">
+                    <h3>${produto.nome}</h3>
+                    <p>${produto.descricao}</p>
+                    <span class="produto-preco">${produto.preco}</span>
+                </div>
+            </div>
+        `;
+    });
+
+    // Jogar todo o HTML gerado dentro do container
+    container.innerHTML = htmlGerado;
+
+</script>
 
 </body>
 </html>
