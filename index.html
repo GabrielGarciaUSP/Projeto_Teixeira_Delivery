@@ -96,6 +96,24 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 1.8rem; }
         }
+
+        .btn-comprar {
+        background-color: var(--primary-color); 
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;       
+        margin-top: 10px;  
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.2s;
+        }
+
+        .btn-comprar:hover {
+            background-color: var(--secondary-color); 
+        }
+
     </style>
 </head>
 <body>
@@ -128,10 +146,11 @@
     </footer>
 
     <script>
+    // 1. A Lista de Dados (O Cardápio)
     const listaProdutos = [
         {
             nome: "Nescau Cereal",
-            descricao: "Nescau Cereal Sabor Chocolate 180g",
+            descricao: "Sabor Chocolate 210g",
             preco: "R$ 12,90",
             imagem: "img/Nescau.png"
         },
@@ -155,16 +174,22 @@
         }
     ];
 
-    // Pegar o container para guardar os produtos
-    const container = document.getElementById('container-produtos');
+    // Criação do carrinho
+    let carrinho = [];
 
-    // Criar uma variável para guardar o HTML gerado
+    // Função para adicionar no carrinho
+    function adicionarAoCarrinho(indiceDoProduto) {
+        const produtoEscolhido = listaProdutos[indiceDoProduto];
+        carrinho.push(produtoEscolhido);
+        alert("Você adicionou: " + produtoEscolhido.nome);
+        console.log("Carrinho atual:", carrinho);
+    }
+
+    // Joga os itens na tela 
+    const container = document.getElementById('container-produtos');
     let htmlGerado = "";
 
-    // Percorrer a lista de produtos
-    listaProdutos.forEach(produto => {
-         
-        // Injeção dos dados
+    listaProdutos.forEach((produto, index) => {
         htmlGerado += `
             <div class="produto-card">
                 <img src="${produto.imagem}" class="produto-img" alt="${produto.nome}">
@@ -172,14 +197,17 @@
                     <h3>${produto.nome}</h3>
                     <p>${produto.descricao}</p>
                     <span class="produto-preco">${produto.preco}</span>
+                    
+                    <button class="btn-comprar" onclick="adicionarAoCarrinho(${index})">
+                        Adicionar
+                    </button>
                 </div>
             </div>
         `;
     });
 
-    // Jogar todo o HTML gerado dentro do container
+    // Pega todo código HTML e volta pro site
     container.innerHTML = htmlGerado;
-
 </script>
 
 </body>
