@@ -98,20 +98,39 @@
         }
 
         .btn-comprar {
-        background-color: var(--primary-color); 
-        color: white;
-        border: none;
-        padding: 10px;
-        width: 100%;       
-        margin-top: 10px;  
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: 0.2s;
+            background-color: var(--primary-color); 
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;       
+            margin-top: 10px;  
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
         }
 
         .btn-comprar:hover {
             background-color: var(--secondary-color); 
+        }
+
+        .carrinho-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2ecc71; /* Verde do zap */
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 2000;
+            transition: transform 0.3s;
+        }
+
+        .carrinho-float:hover {
+            transform: scale(1.05); /* Efeito de zoom */
         }
 
     </style>
@@ -144,6 +163,10 @@
         <br>
         <small>Desenvolvido por Gabriel Garcia</small>
     </footer>
+
+    <div id="carrinho-float" class="carrinho-float" onclick="finalizarPedido()" style="display: none;">
+    🛒 Fechar Pedido (<span id="contagem-carrinho">0</span>)
+    </div>
 
     <script>
     // 1. A Lista de Dados (O Cardápio)
@@ -182,7 +205,26 @@
         const produtoEscolhido = listaProdutos[indiceDoProduto];
         carrinho.push(produtoEscolhido);
         alert("Você adicionou: " + produtoEscolhido.nome);
-        console.log("Carrinho atual:", carrinho);
+    }
+
+    // Função para montar o carrinho e finalizar o pedido
+    function finalizarPedido() {
+        if (carrinho.length === 0) return;
+
+        let mensagem = "Olá! Gostaria de fazer um pedido:\n\n";
+        let total = 0;
+
+        carrinho.forEach(item => {
+            let precoNumerico = parseFloat(item.preco.replace('R$ ', '').replace(',', '.'));
+            mensagem += `* ${item.nome} - ${item.preco}\n`;
+            total += precoNumerico;
+        });
+
+        mensagem += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
+        const numeroLoja = "5518996139631"; 
+        const linkZap = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
+        window.open(linkZap, '_blank');
+
     }
 
     // Joga os itens na tela 
@@ -209,6 +251,8 @@
     // Pega todo código HTML e volta pro site
     container.innerHTML = htmlGerado;
 </script>
+
+
 
 </body>
 </html>
